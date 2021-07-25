@@ -1,5 +1,7 @@
 *~
+build
+.cproject
+.project
+.settings
 *.wav
-*.o
-ax25beacon
-ax25frame
+
