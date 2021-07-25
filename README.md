@@ -4,8 +4,8 @@
 Platform | Arch | Test Status
 ------------ | ------------ | -------------
 Ubuntu Linux | x86_64 | Compiles & Runs
-Raspberry Pi Pico | ARMv6 | Compiles
-Raspberry Pi 3+ | ARMv7l | TBD
+Raspberry Pi Pico | ARMv6 | Compiles (build environment not provided yet)
+Raspberry Pi 3B+ & 4B | ARMv7l / ARMv8 | TBD
 
 ```
 ax25beacon - Created by Philip Heron <phil@sanslogic.co.uk>
@@ -21,5 +21,6 @@ I've taken some of [perplexinglysimple's pre-work](https://github.com/perplexing
 
 - [x] Provide an example executable
 - [x] Complete testing on Raspberry Pi Pico
-- [x] Testing on Raspberry Pi 3+ and 4
+- [x] Provide the build environment for Raspberry Pi Pico
+- [x] Testing on Raspberry Pi 3B+ and 4B
 
