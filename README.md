@@ -38,4 +38,5 @@ Raspberry Pi 3B+ & 4B | ARMv7l / ARMv8 | TBD
 - [x] Testing on Raspberry Pi 3B+ and 4B
 
 ### Acknowledgements
-I've also taken some of [perplexinglysimple's pre-work](https://github.com/perplexinglysimple/ax25beacon).
+- I've taken something from [perplexinglysimple's pre-work](https://github.com/perplexinglysimple/ax25beacon)
+- I'm using [brglng's libwav](https://github.com/brglng/libwav) for the example program
