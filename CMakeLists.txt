@@ -24,7 +24,7 @@ target_compile_options(${TARGET_LIB_NAME} PRIVATE "$<$<CONFIG:Release>:${COMPILE
 
 include(FetchContent)
 FetchContent_Declare(libwav
-    GIT_REPOSITORY    "https://github.com/brglng/libwav.git" 
+    GIT_REPOSITORY    "https://github.com/eleccoder/libwav.git" 
     GIT_SHALLOW       ON
     )
 
