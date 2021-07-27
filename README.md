@@ -42,6 +42,7 @@ Linux | x86_64 | Ubuntu | Lib compiles & example runs :heavy_check_mark:
 Raspberry Pi Pico | ARMv6 | none | Lib compiles (build environment to be provided) :heavy_check_mark:
 Raspberry Pi 3B+ | ARMv7l / ARMv8 | Raspberry Pi OS 32-bit | Lib compiles & example runs :heavy_check_mark:
 Raspberry Pi 4B | ARMv7l / ARMv8 | Raspberry Pi OS | TBD
+Windows | x86_64 | Windows 10 | Lib compiles & example runs (w/ warnings)
 
 ### TODO (Aug 2021)
 
