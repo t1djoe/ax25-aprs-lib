@@ -18,7 +18,7 @@
 
 #include <stdio.h>
 
-int ax25_beacon(void* userData, audio_callback_t callback,
+int ax25_beacon(void* user_data, audio_callback_t callback,
                 char* src_callsign, char* dst_callsign,
                 char* path1, char* path2,
                 double latitude, double longitude, double altitude_in_m,
@@ -27,15 +27,15 @@ int ax25_beacon(void* userData, audio_callback_t callback,
 {
  	if (src_callsign == NULL) return -1;
 	if (dst_callsign == NULL) return -1;
-	if (path1 == NULL)        return -1;
-	if (path2 == NULL)        return -1;
-	if (callback == NULL)     return -1;
+	if (path1        == NULL) return -1;
+	if (path2        == NULL) return -1;
+	if (callback     == NULL) return -1;
 
   ax25_t ax25;
 	
 	ax25_init(&ax25, AX25_AFSK1200);
 	
-	ax25_set_audio_callback(&ax25, (void*)callback, (void*)userData);
+	ax25_set_audio_callback(&ax25, (void*)callback, (void*)user_data);
 
   /* Warn if the sample rate doesn't divide cleanly into the bit rate */
 	if (ax25.samplerate % ax25.bitrate != 0)
@@ -47,23 +47,27 @@ int ax25_beacon(void* userData, audio_callback_t callback,
 	  }
 
   /* Convert the position to the format APRS requires */
-  latitude  = (90.0  - latitude)  * 380926;
-  longitude = (180.0 + longitude) * 190463;
+	const double latitude_aprs  = (90.0  - latitude)  * 380926.0;
+	const double longitude_aprs = (180.0 + longitude) * 190463.0;
 
-  double altitude_in_feet = altitude_in_m * 3.2808399;
+  const double altitude_in_feet = altitude_in_m * 3.2808399;
 
   const uint8_t str_len = 5;
 
   char lat_str[str_len];
   char long_str[str_len];
 
-  ax25_base91enc(lat_str,  str_len - 1, latitude);
-  ax25_base91enc(long_str, str_len - 1, longitude);
+  ax25_base91enc(lat_str,  str_len - 1, latitude_aprs);
+  ax25_base91enc(long_str, str_len - 1, longitude_aprs);
 
   /* Generate the audio tones and send to callback */
-  int ret_val = ax25_frame(&ax25, src_callsign, dst_callsign, path1, path2, "!%c%s%s%c   /A=%06.0f%s", sym_table, lat_str, long_str,
-                           sym_code, altitude_in_feet, (comment ? comment : ""));
-
+  int ret_val = ax25_frame(&ax25, src_callsign, dst_callsign,
+                           path1, path2,
+                           "!%c%s%s%c   /A=%06.0f%s", sym_table,
+                           lat_str, long_str,
+                           sym_code,
+                           altitude_in_feet,
+                           (comment ? comment : ""));
 
   return ret_val;
 }

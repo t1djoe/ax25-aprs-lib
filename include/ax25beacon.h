@@ -24,7 +24,7 @@ extern "C" {
 
 typedef void (*audio_callback_t)(void* data, int16_t* wav, size_t wav_len);
 
-int ax25_beacon(void* userData, audio_callback_t callback,
+int ax25_beacon(void* user_data, audio_callback_t callback,
                 char* src_callsign, char* dst_callsign,
                 char* path1, char* path2,
                 double latitude, double longitude, double altitude_in_m,

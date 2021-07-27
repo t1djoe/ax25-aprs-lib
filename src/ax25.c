@@ -61,18 +61,27 @@ static uint8_t* _ax25_callsign(uint8_t* s, char* callsign)
 {
   char ssid;
   char i;
+
   for (i = 0; i < 6; i++)
     {
       if (*callsign && *callsign != '-')
-        *(s++) = *(callsign++) << 1;
+        {
+          *(s++) = *(callsign++) << 1;
+        }
       else
-        *(s++) = ' ' << 1;
+        {
+          *(s++) = ' ' << 1;
+        }
     }
 
   if (*callsign == '-')
-    ssid = atoi(callsign + 1);
+    {
+      ssid = atoi(callsign + 1);
+    }
   else
-    ssid = 0;
+    {
+      ssid = 0;
+    }
 
   *(s++) = ('0' + ssid) << 1;
 
@@ -86,7 +95,9 @@ static size_t _ax25_txbit(ax25_t* ax25, int16_t** wav, uint8_t bit, uint8_t no_p
 
   /* A zero bit is encoded by a change in frequency */
   if (!bit)
-    ax25->freq ^= ax25->freq1 ^ ax25->freq2;
+    {
+      ax25->freq ^= ax25->freq1 ^ ax25->freq2;
+    }
 
   /* Generate the symbol */
   for (i = 0; i < len; i++)
@@ -99,15 +110,23 @@ static size_t _ax25_txbit(ax25_t* ax25, int16_t** wav, uint8_t bit, uint8_t no_p
     {
       /* If we have sent 5 one bits, stuff a zero bit in */
       if (bit)
-        ax25->bc++;
+        {
+          ax25->bc++;
+        }
       else
-        ax25->bc = 0;
+        {
+          ax25->bc = 0;
+        }
 
       if (ax25->bc == 5)
-        len += _ax25_txbit(ax25, wav, 0, 0);
+        {
+          len += _ax25_txbit(ax25, wav, 0, 0);
+        }
     }
   else
-    ax25->bc = 0;
+    {
+      ax25->bc = 0;
+    }
 
   return (len);
 }
@@ -132,13 +151,19 @@ static size_t _ax25_tx(ax25_t* ax25, int16_t* wav, uint8_t* frame, size_t length
   size_t len = 0;
 
   for (i = 0; i < ax25->preamble; i++)
-    len += _ax25_txbyte(ax25, &wav, 0x7E, 1);
+    {
+      len += _ax25_txbyte(ax25, &wav, 0x7E, 1);
+    }
 
   for (i = 0; i < length; i++)
-    len += _ax25_txbyte(ax25, &wav, frame[i], 0);
+    {
+      len += _ax25_txbyte(ax25, &wav, frame[i], 0);
+    }
 
   for (i = 0; i < ax25->rest; i++)
-    len += _ax25_txbyte(ax25, &wav, 0x7E, 1);
+    {
+      len += _ax25_txbyte(ax25, &wav, 0x7E, 1);
+    }
 
   return (len);
 }
@@ -149,29 +174,29 @@ ax25_t* ax25_init(ax25_t* ax25, ax25_mode_t mode)
     {
     case AX25_AFSK1200:
       ax25->samplerate = AX25_AFSK1200_SAMPLERATE;
-      ax25->bitrate = AX25_AFSK1200_BITRATE;
-      ax25->freq1 = AX25_AFSK1200_FREQ1;
-      ax25->freq2 = AX25_AFSK1200_FREQ2;
-      ax25->preamble = AX25_AFSK1200_PREAMBLE_BYTES;
-      ax25->rest = AX25_AFSK1200_REST_BYTES;
+      ax25->bitrate    = AX25_AFSK1200_BITRATE;
+      ax25->freq1      = AX25_AFSK1200_FREQ1;
+      ax25->freq2      = AX25_AFSK1200_FREQ2;
+      ax25->preamble   = AX25_AFSK1200_PREAMBLE_BYTES;
+      ax25->rest       = AX25_AFSK1200_REST_BYTES;
     break;
 
     case AX25_AFSK2400:
       ax25->samplerate = AX25_AFSK2400_SAMPLERATE;
-      ax25->bitrate = AX25_AFSK2400_BITRATE;
-      ax25->freq1 = AX25_AFSK2400_FREQ1;
-      ax25->freq2 = AX25_AFSK2400_FREQ2;
-      ax25->preamble = AX25_AFSK2400_PREAMBLE_BYTES;
-      ax25->rest = AX25_AFSK2400_REST_BYTES;
+      ax25->bitrate    = AX25_AFSK2400_BITRATE;
+      ax25->freq1      = AX25_AFSK2400_FREQ1;
+      ax25->freq2      = AX25_AFSK2400_FREQ2;
+      ax25->preamble   = AX25_AFSK2400_PREAMBLE_BYTES;
+      ax25->rest       = AX25_AFSK2400_REST_BYTES;
     break;
     }
 
-  ax25->audio_callback = NULL;
+  ax25->audio_callback      = NULL;
   ax25->audio_callback_data = NULL;
 
   ax25->phase = 0;
-  ax25->freq = ax25->freq1;
-  ax25->bc = 0;
+  ax25->freq  = ax25->freq1;
+  ax25->bc    = 0;
 
   return (ax25);
 }
@@ -198,10 +223,14 @@ int ax25_frame(ax25_t* ax25, char* scallsign, char* dcallsign, char* path1, char
   s = _ax25_callsign(s, scallsign);
 
   if (path1)
-    s = _ax25_callsign(s, path1);
+    {
+      s = _ax25_callsign(s, path1);
+    }
 
   if (path2)
-    s = _ax25_callsign(s, path2);
+    {
+      s = _ax25_callsign(s, path2);
+    }
 
   /* Mark the end of the callsigns */
   s[-1] |= 1;
@@ -216,7 +245,9 @@ int ax25_frame(ax25_t* ax25, char* scallsign, char* dcallsign, char* path1, char
 
   /* Calculate and append the checksum */
   for (x = 0xFFFF, s = frame; *s; s++)
-    x = _crc_ccitt_update(x, *s);
+    {
+      x = _crc_ccitt_update(x, *s);
+    }
 
   *(s++) = ~(x & 0xFF);
   *(s++) = ~((x >> 8) & 0xFF);
@@ -229,14 +260,18 @@ int ax25_frame(ax25_t* ax25, char* scallsign, char* dcallsign, char* path1, char
   wav = calloc(wav_len, sizeof(int16_t));
 
   if (!wav)
-    return (AX25_OUT_OF_MEMORY);
+    {
+      return (AX25_OUT_OF_MEMORY);
+    }
 
   /* Generate the tones */
   wav_len = _ax25_tx(ax25, wav, frame, s - frame);
 
   /* Fire the callback to play/save the audio data */
   if (ax25->audio_callback)
-    (*ax25->audio_callback)(ax25->audio_callback_data, wav, wav_len);
+    {
+      (*ax25->audio_callback)(ax25->audio_callback_data, wav, wav_len);
+    }
 
   free(wav);
 
