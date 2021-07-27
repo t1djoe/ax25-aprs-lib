@@ -30,6 +30,9 @@ FetchContent_Declare(libwav
 
 FetchContent_MakeAvailable(libwav)
 
-add_executable(${TARGET_EXAMPLE_EXE_NAME} src/example.c)
+add_executable(${TARGET_EXAMPLE_EXE_NAME} EXCLUDE_FROM_ALL src/example.c)
 target_include_directories(${TARGET_EXAMPLE_EXE_NAME} PRIVATE include)
 target_link_libraries(${TARGET_EXAMPLE_EXE_NAME} ${PROJECT_NAME} wav::wav m)
+
+add_custom_target(example)
+add_dependencies(example ${TARGET_EXAMPLE_EXE_NAME})

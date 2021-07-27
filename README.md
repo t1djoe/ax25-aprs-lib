@@ -6,12 +6,21 @@ It encodes position, altitude and an optional comment field.
 
 Essentially, this is what a [TNC](https://en.wikipedia.org/wiki/Terminal_node_controller) (Terminal Network Controller) is doing in hardware.
 
-### Build
+### Configure the build
 ```
 mkdir build
 cd build
 cmake ..
+```
+
+### Build the library
+```
 make
+```
+
+### Build the example (LINUX only)
+```
+make example
 ```
 
 ### Run the example program
