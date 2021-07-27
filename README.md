@@ -18,7 +18,7 @@ cmake ..
 make
 ```
 
-### Build the example (LINUX only)
+### Build the example program (LINUX only)
 ```
 make example
 ```
