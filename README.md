@@ -63,17 +63,16 @@ Decoding the original message can be done using the [direwolf](https://github.co
 ### Test Status
 
 Platform | Arch | OS | Test Status
------------- | ------------ | ------------- | -------------
-Linux | x86_64 | Ubuntu | Lib compiles & example runs :heavy_check_mark:
-Raspberry Pi Pico | ARMv6 | none | Lib compiles (build environment to be provided) :heavy_check_mark:
-Raspberry Pi 3B+/4B | ARMv7l / ARMv8 | Raspberry Pi OS 32-bit | Lib compiles & example runs :heavy_check_mark:
-Windows / MinGW | x86_64 | Windows 10 | Lib compiles & example runs (w/ warnings) (:heavy_check_mark:)
+-------------- | ------------ | ------------- | ---------------
+Linux | x86_64 | Ubuntu | :heavy_check_mark: Lib compiles & example runs
+Raspberry Pi Pico | ARMv6 | none | :heavy_check_mark: Lib compiles (build env. to be provided)
+Raspberry Pi 3B+, 4B | ARMv7l/ARMv8 | Raspberry Pi OS 32-bit | :heavy_check_mark: Lib compiles & example runs
+Windows / MinGW | x86_64 | Windows 10 | :heavy_check_mark: Lib compiles & example runs (w/ warnings)
 
 ### TODO (Aug 2021)
 
 - [x] Complete testing on Raspberry Pi Pico
 - [x] Provide the build environment for Raspberry Pi Pico
-- [x] Testing on Raspberry Pi 4B
 
 ### Acknowledgements
 - I've taken something from [perplexinglysimple's pre-work](https://github.com/perplexinglysimple/ax25beacon)
