@@ -64,10 +64,10 @@ Decoding the original message can be done using the [direwolf](https://github.co
 
 Platform | Arch | OS | Test Status
 -------------- | ------------ | ------------- | ---------------
-Linux | x86_64 | Ubuntu | :heavy_check_mark: Lib compiles & example runs
-Raspberry Pi Pico | ARMv6 | none | :heavy_check_mark: Lib compiles (build env. to be provided)
+PC | x86_64 | Ubuntu LINUX | :heavy_check_mark: Lib compiles & example runs
+PC | x86_64 | Windows 10 (MinGW) | :heavy_check_mark: Lib compiles & example runs (w/ warnings)
 Raspberry Pi 3B+, 4B | ARMv7l/ARMv8 | Raspberry Pi OS 32-bit | :heavy_check_mark: Lib compiles & example runs
-Windows / MinGW | x86_64 | Windows 10 | :heavy_check_mark: Lib compiles & example runs (w/ warnings)
+Raspberry Pi Pico | ARMv6 | none | :heavy_check_mark: Lib compiles (build env. to be provided)
 
 ### TODO (Aug 2021)
 
