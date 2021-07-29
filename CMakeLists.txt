@@ -3,7 +3,6 @@ cmake_minimum_required(VERSION 3.15)
 project(ax25beacon VERSION 0.9)
 
 set(TARGET_LIB_NAME ${PROJECT_NAME})
-set(TARGET_EXAMPLE_EXE_NAME ${PROJECT_NAME}Example)
 
 
 add_library(${TARGET_LIB_NAME}
@@ -22,17 +21,19 @@ set(COMPILE_OPTIONS "-Wall")
 set(COMPILE_RELEASE_OPTIONS "${COMPILE_OPTIONS};-O3")
 target_compile_options(${TARGET_LIB_NAME} PRIVATE "$<$<CONFIG:Release>:${COMPILE_RELEASE_OPTIONS}>")
 
-include(FetchContent)
-FetchContent_Declare(libwav
-    GIT_REPOSITORY    "https://github.com/eleccoder/libwav.git" 
-    GIT_SHALLOW       ON
-    )
+# We won't build the example on bare-metal systems as file I/O is required
+if (CMAKE_SYSTEM_VERSION) # Check if the target system has an OS
+  set(TARGET_EXAMPLE_EXE_NAME ${PROJECT_NAME}Example)
 
-FetchContent_MakeAvailable(libwav)
+  include(FetchContent)
+  FetchContent_Declare(libwav
+      GIT_REPOSITORY    "https://github.com/eleccoder/libwav.git" 
+      GIT_SHALLOW       ON
+      )
 
-add_executable(${TARGET_EXAMPLE_EXE_NAME} EXCLUDE_FROM_ALL src/example.c)
-target_include_directories(${TARGET_EXAMPLE_EXE_NAME} PRIVATE include)
-target_link_libraries(${TARGET_EXAMPLE_EXE_NAME} ${PROJECT_NAME} wav::wav m)
+  FetchContent_MakeAvailable(libwav)
 
-add_custom_target(example)
-add_dependencies(example ${TARGET_EXAMPLE_EXE_NAME})
+  add_executable(${TARGET_EXAMPLE_EXE_NAME} src/example.c)
+  target_include_directories(${TARGET_EXAMPLE_EXE_NAME} PRIVATE include)
+  target_link_libraries(${TARGET_EXAMPLE_EXE_NAME} ${PROJECT_NAME} wav::wav m)
+endif()

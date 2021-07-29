@@ -11,20 +11,17 @@ Essentially, this is what a [TNC](https://en.wikipedia.org/wiki/Terminal_node_co
 
 ```
 cmake -S . -B build
+cmake --build build
 ```
 
 - Windows (MinGW)
 
 ```
 cmake -G "MinGW Makefiles" -S . -B build
+cmake --build build
 ```
 
-### Build the example program (LINUX or Windows only)
-```
-cmake --build build -t example
-```
-
-### Run the example program
+### Run the example program (on OS only)
 ```
 cd build
 ./ax25beaconExample
@@ -44,6 +41,7 @@ PC | x86_64 | Ubuntu LINUX | :heavy_check_mark: Lib compiles & example runs
 PC | x86_64 | Windows 10 (MinGW) | :heavy_check_mark: Lib compiles & example runs
 Raspberry Pi 3B+, 4B | ARMv7l/ARMv8 | Raspberry Pi OS 32-bit | :heavy_check_mark: Lib compiles & example runs
 Raspberry Pi Pico | ARMv6 | none | :heavy_check_mark: Lib compiles (build env. to be provided)
+ESP32 | | none | TBD
 
 ### TODO (Aug 2021)
 
