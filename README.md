@@ -1,4 +1,4 @@
-## This is a multi-platform (Arduino-free) library version of [Philip Heron's *ax25beacon*](https://github.com/fsphil/ax25beacon) project
+## Multi-platform (Arduino-free) library version of [Philip Heron's *ax25beacon*](https://github.com/fsphil/ax25beacon) project
 
 This simple library generates the [AFSK](https://en.wikipedia.org/wiki/Frequency-shift_keying#Audio_FSK) [baseband](https://en.wikipedia.org/wiki/Baseband)
 audio tones for an [AX.25](https://en.wikipedia.org/wiki/AX.25) packet for use on the [APRS](https://en.wikipedia.org/wiki/Automatic_Packet_Reporting_System) (Automatic Packet Reporting System) network.
@@ -40,10 +40,10 @@ cat aprs.wav | direwolf -r 48000 -
 
 Platform | Arch | OS | Test Status
 -------------- | ------------ | ------------- | ---------------
-Linux | x86_64 | Ubuntu | :heavy_check_mark: Lib compiles & example runs
-Raspberry Pi Pico | ARMv6 | none | :heavy_check_mark: Lib compiles (build env. to be provided)
+PC | x86_64 | Ubuntu LINUX | :heavy_check_mark: Lib compiles & example runs
+PC | x86_64 | Windows 10 (MinGW) | :heavy_check_mark: Lib compiles & example runs (w/ warnings)
 Raspberry Pi 3B+, 4B | ARMv7l/ARMv8 | Raspberry Pi OS 32-bit | :heavy_check_mark: Lib compiles & example runs
-Windows / MinGW | x86_64 | Windows 10 | :heavy_check_mark: Lib compiles & example runs (w/ warnings)
+Raspberry Pi Pico | ARMv6 | none | :heavy_check_mark: Lib compiles (build env. to be provided)
 
 ### TODO (Aug 2021)
 
