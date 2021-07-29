@@ -6,58 +6,34 @@ It encodes position, altitude and an optional comment field.
 
 Essentially, this is what a [TNC](https://en.wikipedia.org/wiki/Terminal_node_controller) (Terminal Network Controller) is doing in hardware.
 
-### Configure the build
-- All non-Windows platforms
-
-```
-mkdir build
-cd build
-cmake ..
-```
-
-- Windows (MinGW)
-
-```
-mkdir build
-cd build
-cmake -G "MinGW Makefiles" ..
-```
-
 ### Build the library
 - All non-Windows platforms
 
 ```
-make
+cmake -S . -B build
 ```
 
 - Windows (MinGW)
 
 ```
-mingw32-make
+cmake -G "MinGW Makefiles" -S . -B build
 ```
 
-### Build the example program (Platforms w/ OS only)
-- All non-Windows platforms w/ OS
-
+### Build the example program (LINUX or Windows only)
 ```
-make example
-```
-
-- Windows (MinGW)
-
-```
-mingw32-make example
+cmake --build build -t example
 ```
 
 ### Run the example program
 ```
+cd build
 ./ax25beaconExample
 ```
 Creates a `aprs.wav` file containing the AFSK audio tone encoding of an APRS test message.
 Decoding the original message can be done using the [direwolf](https://github.com/wb2osz/direwolf) program:
 
 ```
-./ax25beaconExample && cat aprs.wav | direwolf -r 48000 -
+cat aprs.wav | direwolf -r 48000 -
 ```
 
 ### Test Status
