@@ -57,7 +57,7 @@ static uint16_t _crc_ccitt_update(uint16_t crc, uint8_t data)
   return ((((uint16_t)data << 8) | (crc >> 8)) ^ (uint8_t)(data >> 4) ^ ((uint16_t)data << 3));
 }
 
-static uint8_t* _ax25_callsign(uint8_t* s, char* callsign)
+static uint8_t* _ax25_callsign(uint8_t* s, const char* callsign)
 {
   char ssid;
   char i;
@@ -207,7 +207,7 @@ void ax25_set_audio_callback(ax25_t* ax25, void (*audio_callback)(void*, int16_t
   ax25->audio_callback_data = audio_callback_data;
 }
 
-int ax25_frame(ax25_t* ax25, char* scallsign, char* dcallsign, char* path1, char* path2, char* data, ...)
+int ax25_frame(ax25_t* ax25, const char* scallsign, const char* dcallsign, const char* path1, const char* path2, const char* data, ...)
 {
   uint8_t frame[AX25_MAX_LEN + 1];
   int16_t* wav;

@@ -61,7 +61,7 @@ extern char* ax25_base91enc(char* s, uint8_t n, uint32_t v);
 extern ax25_t* ax25_init(ax25_t* ax25, ax25_mode_t mode);
 extern void ax25_set_audio_callback(ax25_t* ax25, void (*audio_callback)(void*, int16_t*, size_t),
                                     void* audio_callback_data);
-extern int ax25_frame(ax25_t* ax25, char* scallsign, char* dcallsign, char* path1, char* path2, char* data, ...);
+extern int ax25_frame(ax25_t* ax25, const char* scallsign, const char* dcallsign, const char* path1, const char* path2, const char* data, ...);
 
 #ifdef __cplusplus
 }

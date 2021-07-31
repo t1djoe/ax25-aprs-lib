@@ -24,11 +24,11 @@ extern "C" {
 
 typedef void (*audio_callback_t)(void* data, int16_t* wav, size_t wav_len);
 
-int ax25_beacon(void* user_data, audio_callback_t callback,
-                char* src_callsign, char* dst_callsign,
-                char* path1, char* path2,
+int ax25_beacon(const void* user_data, audio_callback_t callback,
+                const char* src_callsign, const char* dst_callsign,
+                const char* path1, const char* path2,
                 double latitude, double longitude, double altitude_in_m,
-                char* comment,
+                const char* comment,
                 char sym_table, char sym_code);
 
 #ifdef __cplusplus
