@@ -7,7 +7,7 @@ It encodes position, altitude and an optional comment field.
 Essentially, this is what a [TNC](https://en.wikipedia.org/wiki/Terminal_node_controller) (Terminal Network Controller) is doing in hardware.
 
 ### Build the library
-- All non-Windows platforms
+- All non-Windows platforms (for Raspberry Pi Pico, see down below for a special build configuration)
 
 ```
 cmake -S . -B build
@@ -43,10 +43,57 @@ Raspberry Pi 3B+, 4B | ARMv7l/ARMv8 | Raspberry Pi OS 32-bit | :heavy_check_mark
 Raspberry Pi Pico | ARMv6 | none | :heavy_check_mark: Lib compiles (build env. to be provided)
 ESP32 | | none | TBD
 
-### TODO (Aug 2021)
+### Special build configuration for Raspberry Pi Pico
 
-- [x] Complete testing on Raspberry Pi Pico
-- [x] Provide the build environment for Raspberry Pi Pico
+Instead of using the shipped `CMakeLists.txt` file, you'll have to integrate the cross-platform build of `ax25-aprs-lib` into your own `CMakeLists.txt` of your Pico application:
+
+```
+cmake_minimum_required(VERSION 3.15)
+
+# Copy this file from $PICO_SDK_PATH/pico-sdk/external
+include(pico_sdk_import.cmake)
+
+project(__YOUR_PROJECT_NAME_HERE__ VERSION 1.0)
+
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+
+pico_sdk_init()
+
+# Setup of eleccoder's 'ax25-aprs-lib'
+
+include(FetchContent)
+FetchContent_Declare(ax25_aprs_lib
+    GIT_REPOSITORY    "https://github.com/eleccoder/ax25-aprs-lib.git" 
+    GIT_SHALLOW       ON
+)
+
+FetchContent_MakeAvailable(ax25_aprs_lib)
+
+# Setup of the application
+
+set(EXE_NAME __YOUR_EXECUTABLE_NAME_HERE__)
+
+add_executable(${EXE_NAME}
+    src/file.c
+)
+
+target_include_directories(${EXE_NAME} PRIVATE
+    include
+)
+
+# Set the console interface
+pico_enable_stdio_usb(aprs_pico 1)    # USB
+# pico_enable_stdio_uart(aprs_pico 1) # UART
+
+# create map/bin/hex file etc.
+pico_add_extra_outputs(${EXE_NAME})
+
+target_link_libraries(${EXE_NAME}
+    pico_stdlib
+    ax25_aprs_lib::ax25beacon
+)
+```
 
 ### Acknowledgements
 - I've taken something from [perplexinglysimple's pre-work](https://github.com/perplexinglysimple/ax25beacon)
