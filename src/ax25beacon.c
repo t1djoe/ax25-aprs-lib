@@ -25,30 +25,30 @@ int ax25_beacon(const void* user_data, audio_callback_t callback,
                 const char* comment,
                 char sym_table, char sym_code)
 {
- 	if (src_callsign == NULL) return -1;
-	if (dst_callsign == NULL) return -1;
-	if (path1        == NULL) return -1;
-	if (path2        == NULL) return -1;
-	if (callback     == NULL) return -1;
+  if (callback     == NULL) return -1;
+  if (src_callsign == NULL) return -1;
+  if (dst_callsign == NULL) return -1;
+  if (path1        == NULL) return -1;
+  if (path2        == NULL) return -1;
 
   ax25_t ax25;
-	
-	ax25_init(&ax25, AX25_AFSK1200);
-	
-	ax25_set_audio_callback(&ax25, (void*)callback, (void*)user_data);
+
+  ax25_init(&ax25, AX25_AFSK1200);
+
+  ax25_set_audio_callback(&ax25, (void*)callback, (void*)user_data);
 
   /* Warn if the sample rate doesn't divide cleanly into the bit rate */
-	if (ax25.samplerate % ax25.bitrate != 0)
-	  {
-	    printf("Warning: The sample rate %d does not divide evently into %d. The bit rate will be %.2f\n",
-	           ax25.samplerate,
-	           ax25.bitrate,
-	           (float)ax25.samplerate / (ax25.samplerate / ax25.bitrate));
-	  }
+  if (ax25.samplerate % ax25.bitrate != 0)
+    {
+      printf("Warning: The sample rate %d does not divide evently into %d. The bit rate will be %.2f\n",
+             ax25.samplerate,
+             ax25.bitrate,
+             (float)ax25.samplerate / (ax25.samplerate / ax25.bitrate));
+    }
 
   /* Convert the position to the format APRS requires */
-	const double latitude_aprs  = (90.0  - latitude)  * 380926.0;
-	const double longitude_aprs = (180.0 + longitude) * 190463.0;
+  const double latitude_aprs  = (90.0  - latitude)  * 380926.0;
+  const double longitude_aprs = (180.0 + longitude) * 190463.0;
 
   const double altitude_in_feet = altitude_in_m * 3.2808399;
 
