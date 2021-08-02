@@ -44,7 +44,7 @@ Raspberry Pi Pico | ARMv6 | none | :heavy_check_mark: Lib compiles
 
 ### Special build configuration for Raspberry Pi Pico
 
-Instead of using the shipped `CMakeLists.txt` file, you'll have to integrate the cross-platform build of `ax25-aprs-lib` into your own `CMakeLists.txt` of your Pico application:
+Since this is a cross-platform build for an ARM target, you can't directly use the shipped `CMakeLists.txt` file, as it would perform a host build. Instead, you'll have to integrate the build of `ax25-aprs-lib` into the cmake configuration of your own Pico application in a manner like this:
 
 ```
 cmake_minimum_required(VERSION 3.15)
