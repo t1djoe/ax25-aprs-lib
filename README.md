@@ -40,8 +40,7 @@ Platform | Arch | OS | Test Status
 PC | x86_64 | Ubuntu LINUX | :heavy_check_mark: Lib compiles & example runs
 PC | x86_64 | Windows 10 (MinGW) | :heavy_check_mark: Lib compiles & example runs
 Raspberry Pi 3B+, 4B | ARMv7l/ARMv8 | Raspberry Pi OS 32-bit | :heavy_check_mark: Lib compiles & example runs
-Raspberry Pi Pico | ARMv6 | none | :heavy_check_mark: Lib compiles (build env. to be provided)
-ESP32 | | none | TBD
+Raspberry Pi Pico | ARMv6 | none | :heavy_check_mark: Lib compiles
 
 ### Special build configuration for Raspberry Pi Pico
 
