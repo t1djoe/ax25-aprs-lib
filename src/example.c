@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 
-static void audio_callback(void* data, int16_t* wav, size_t wav_len)
+static void audio_callback(const void* data, const int16_t* wav, size_t wav_len)
 {
   printf("wav_len: %li\n", wav_len);
 

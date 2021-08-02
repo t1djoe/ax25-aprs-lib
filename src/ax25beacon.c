@@ -13,29 +13,34 @@
 /* You should have received a copy of the GNU General Public License     */
 /* along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include <ax25.h>
 #include <ax25beacon.h>
 
 #include <stdio.h>
 
-int ax25_beacon(const void* user_data, audio_callback_t callback,
-                const char* src_callsign, const char* dst_callsign,
-                const char* path1, const char* path2,
-                double latitude, double longitude, double altitude_in_m,
-                const char* comment,
-                char sym_table, char sym_code)
+int ax25_beacon(const void*           user_data,
+                ax25_audio_callback_t audio_callback,
+                const char*           src_callsign,
+                const char*           dst_callsign,
+                const char*           path1,
+                const char*           path2,
+                double                latitude,
+                double                longitude,
+                double                altitude_in_m,
+                const char*           comment,
+                char                  sym_table,
+                char                  sym_code)
 {
-  if (callback     == NULL) return -1;
-  if (src_callsign == NULL) return -1;
-  if (dst_callsign == NULL) return -1;
-  if (path1        == NULL) return -1;
-  if (path2        == NULL) return -1;
+  if (audio_callback == NULL) return -1;
+  if (src_callsign   == NULL) return -1;
+  if (dst_callsign   == NULL) return -1;
+  if (path1          == NULL) return -1;
+  if (path2          == NULL) return -1;
 
   ax25_t ax25;
 
   ax25_init(&ax25, AX25_AFSK1200);
 
-  ax25_set_audio_callback(&ax25, (void*)callback, (void*)user_data);
+  ax25_set_audio_callback(&ax25, (void*)audio_callback, (void*)user_data);
 
   /* Warn if the sample rate doesn't divide cleanly into the bit rate */
   if (ax25.samplerate % ax25.bitrate != 0)

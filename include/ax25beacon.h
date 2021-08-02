@@ -16,20 +16,26 @@
 #include <stdint.h>
 #include <stdlib.h> // For size_t
 
+#include <ax25.h>
+
 #ifndef _AX25_BEACON_H
 #define _AX25_BEACON_H
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
 
-typedef void (*audio_callback_t)(void* data, int16_t* wav, size_t wav_len);
-
-int ax25_beacon(const void* user_data, audio_callback_t callback,
-                const char* src_callsign, const char* dst_callsign,
-                const char* path1, const char* path2,
-                double latitude, double longitude, double altitude_in_m,
-                const char* comment,
-                char sym_table, char sym_code);
+int ax25_beacon(const void*           user_data,
+                ax25_audio_callback_t audio_callback,
+                const char*           src_callsign,
+                const char*           dst_callsign,
+                const char*           path1,
+                const char*           path2,
+                double                latitude,
+                double                longitude,
+                double                altitude_in_m,
+                const char*           comment,
+                char                  sym_table,
+                char                  sym_code);
 
 #ifdef __cplusplus
 }

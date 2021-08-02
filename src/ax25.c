@@ -201,7 +201,7 @@ ax25_t* ax25_init(ax25_t* ax25, ax25_mode_t mode)
   return (ax25);
 }
 
-void ax25_set_audio_callback(ax25_t* ax25, void (*audio_callback)(void*, int16_t*, size_t), void* audio_callback_data)
+void ax25_set_audio_callback(ax25_t* ax25, ax25_audio_callback_t audio_callback, const void* audio_callback_data)
 {
   ax25->audio_callback      = audio_callback;
   ax25->audio_callback_data = audio_callback_data;
