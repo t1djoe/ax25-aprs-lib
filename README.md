@@ -7,7 +7,7 @@ It encodes position, altitude and an optional comment field.
 Essentially, this is what a [TNC](https://en.wikipedia.org/wiki/Terminal_node_controller) (Terminal Network Controller) is doing in hardware.
 
 ### Build the library
-- All non-Windows platforms (for Raspberry Pi Pico, see down below for a special build configuration)
+- All non-Windows platforms (for Raspberry Pi Pico, see [down below](#Special build configuration for Raspberry Pi Pico) for a special build configuration)
 
 ```
 cmake -S . -B build
