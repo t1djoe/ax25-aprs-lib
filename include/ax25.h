@@ -35,7 +35,7 @@ typedef enum
   AX25_AFSK1200 = 0, AX25_AFSK2400,
 } ax25_mode_t;
 
-typedef void (*ax25_audio_callback_t)(const void* data, const int16_t* wav, size_t wav_len);
+typedef void (*ax25_audio_callback_t)(const void* data, const int16_t* wav, size_t wav_len, uint16_t samplerate);
 
 typedef struct
 {

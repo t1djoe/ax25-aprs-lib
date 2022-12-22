@@ -270,7 +270,7 @@ int ax25_frame(ax25_t* ax25, const char* scallsign, const char* dcallsign, const
   /* Fire the callback to play/save the audio data */
   if (ax25->audio_callback)
     {
-      (*ax25->audio_callback)(ax25->audio_callback_data, wav, wav_len);
+      (*ax25->audio_callback)(ax25->audio_callback_data, wav, wav_len, ax25->samplerate);
     }
 
   free(wav);
