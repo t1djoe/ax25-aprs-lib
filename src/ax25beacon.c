@@ -39,7 +39,6 @@ int ax25_beacon(const void*           user_data,
   ax25_t ax25;
 
   ax25_init(&ax25, AX25_AFSK1200);
-
   ax25_set_audio_callback(&ax25, (void*)audio_callback, (void*)user_data);
 
   /* Warn if the sample rate doesn't divide cleanly into the bit rate */
@@ -57,13 +56,13 @@ int ax25_beacon(const void*           user_data,
 
   const double altitude_in_feet = altitude_in_m * 3.2808399;
 
-  const uint8_t str_len = 5;
+  const uint8_t STR_LEN = 5;
 
-  char lat_str[str_len];
-  char long_str[str_len];
+  char lat_str[STR_LEN];
+  char long_str[STR_LEN];
 
-  ax25_base91enc(lat_str,  str_len - 1, latitude_aprs);
-  ax25_base91enc(long_str, str_len - 1, longitude_aprs);
+  ax25_base91enc(lat_str,  STR_LEN - 1, latitude_aprs);
+  ax25_base91enc(long_str, STR_LEN - 1, longitude_aprs);
 
   /* Generate the audio tones and send to callback */
   int ret_val = ax25_frame(&ax25, src_callsign, dst_callsign,
