@@ -4,21 +4,20 @@
 #include <stdio.h>
 
 
-static void audio_callback(const void* data, const int16_t* wav, size_t wav_len)
+static void audio_callback(const void* user_data, const int16_t* sample_data, size_t num_samples, uint16_t samplerate_in_hz)
 {
-  printf("wav_len: %li\n", wav_len);
+  printf("Number of samples  : %li\n", num_samples);
+  printf("Sample rate (in Hz): %i\n", samplerate_in_hz);
 
-  const unsigned int sample_rate_in_hz = 48000u;
+  WavFile* file = wav_open("aprs.wav", WAV_OPEN_WRITE);
 
-  WavFile* fp = wav_open("aprs.wav", WAV_OPEN_WRITE);
+  wav_set_format(file, WAV_FORMAT_PCM);
+  wav_set_num_channels(file, 1);
+  wav_set_sample_size(file, sizeof(sample_data[0]));
+  wav_set_sample_rate(file, samplerate_in_hz);
+  wav_write(file, sample_data, num_samples);
 
-  wav_set_format(fp, WAV_FORMAT_IEEE_FLOAT);
-  wav_set_sample_size(fp, sizeof(int16_t));
-  wav_set_num_channels(fp, 1);
-  wav_set_sample_rate(fp, sample_rate_in_hz);
-  wav_write(fp, wav, wav_len);
-
-  wav_close(fp);
+  wav_close(file);
 }
 
 
@@ -34,5 +33,5 @@ int main()
 
   printf((err == 0) ? "Successful\n" : "Error\n");
 
-  return 0;
+  return err;
 }
