@@ -22,6 +22,7 @@ cmake --build build
 cmake -G "MinGW Makefiles" -S . -B build
 cmake --build build
 ```
+
 ### Run the example program (on targets w/ OS only)
 ```
 cd build
@@ -31,8 +32,9 @@ Creates a `aprs.wav` file containing the AFSK audio tone encoding of an APRS tes
 Decoding the original message can be done using the [direwolf](https://github.com/wb2osz/direwolf) program:
 
 ```
-cat aprs.wav | direwolf -r 48000 -
+cat aprs.wav | direwolf -r 48000 -D 1 -
 ```
+
 ### Test Status
 
 Platform | Arch | OS | Test Status
@@ -93,6 +95,7 @@ target_link_libraries(${EXE_NAME}
     ax25_aprs_lib::ax25beacon
 )
 ```
+
 ### Acknowledgements
 
 - I've taken something from [perplexinglysimple's pre-work](https://github.com/perplexinglysimple/ax25beacon)
