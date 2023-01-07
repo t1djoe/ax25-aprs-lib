@@ -28,7 +28,8 @@ int ax25_beacon(const void*           user_data,
                 double                altitude_in_m,
                 const char*           comment,
                 char                  sym_table,
-                char                  sym_code)
+                char                  sym_code,
+                char                  course_speed[7])
 {
   if (audio_callback == NULL) return -1;
   if (src_callsign   == NULL) return -1;
@@ -71,7 +72,7 @@ int ax25_beacon(const void*           user_data,
                            lat_str, long_str,
                            sym_code,
                            altitude_in_feet,
-                           (comment ? comment : ""));
+                           (comment ? comment : ""), course_speed);
 
   return ret_val;
 }
