@@ -70,9 +70,9 @@ int ax25_beacon(const void*           user_data,
                            path1, path2,
                            "!%c%s%s%c   /A=%06.0f%s", sym_table,
                            lat_str, long_str,
-                           sym_code,
+                           sym_code,course_speed,
                            altitude_in_feet,
-                           (comment ? comment : ""), course_speed);
+                           (comment ? comment : ""));
 
   return ret_val;
 }
