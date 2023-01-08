@@ -35,7 +35,8 @@ int ax25_beacon(const void*           user_data,
                 double                altitude_in_m,
                 const char*           comment,
                 char                  sym_table,
-                char                  sym_code);
+                char                  sym_code,
+                char                  course_speed[7]);
 
 #ifdef __cplusplus
 }
