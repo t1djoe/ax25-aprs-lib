@@ -73,7 +73,7 @@ int ax25_beacon(const void*           user_data,
   /* Generate the audio tones and send to callback */
   int ret_val = ax25_frame(&ax25, src_callsign, dst_callsign,
                            path1, path2,
-                           "!%c%s%s%c%s /A=%06.0f %s", sym_table,
+                           "!%c%s%s%c%c%c/A=%06.0f %s", sym_table,
                            lat_str, long_str,
                            sym_code, course_str, speed_str,
                            altitude_in_feet,
