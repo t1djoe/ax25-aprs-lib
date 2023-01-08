@@ -62,8 +62,8 @@ int ax25_beacon(const void*           user_data,
 
   char lat_str[STR_LEN];
   char long_str[STR_LEN];
-  char course_str[1];
-  char speed_str[1];
+  char course_str;
+  char speed_str;
 
   ax25_base91enc(lat_str,  STR_LEN - 1, latitude_aprs);
   ax25_base91enc(long_str, STR_LEN - 1, longitude_aprs);
