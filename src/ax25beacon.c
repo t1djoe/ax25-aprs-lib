@@ -30,7 +30,7 @@ int ax25_beacon(const void*           user_data,
                 int                   speed,
                 const char*           comment,
                 char                  sym_table,
-                char                  sym_code
+                char                  sym_code)
 {
   if (audio_callback == NULL) return -1;
   if (src_callsign   == NULL) return -1;
