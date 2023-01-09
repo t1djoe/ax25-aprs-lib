@@ -55,7 +55,8 @@ int ax25_beacon(const void*           user_data,
   /* Convert the position to the format APRS requires */
   const double latitude_aprs  = (90.0  - latitude)  * 380926.0;
   const double longitude_aprs = (180.0 + longitude) * 190463.0;
-
+  const double course_aprs = course;
+  const double speed_aprs = speed;
   const double altitude_in_feet = altitude_in_m * 3.2808399;
 
   const uint8_t STR_LEN = 5;
@@ -68,8 +69,8 @@ int ax25_beacon(const void*           user_data,
 
   ax25_base91enc(lat_str,  STR_LEN - 1, latitude_aprs);
   ax25_base91enc(long_str, STR_LEN - 1, longitude_aprs);
-  ax25_base91enc(course_str, STR_LEN_2 - 1, course);
-  ax25_base91enc(speed_str, STR_LEN_2 - 1, speed);
+  ax25_base91enc(course_str, STR_LEN_2 - 1, course_aprs);
+  ax25_base91enc(speed_str, STR_LEN_2 - 1, speed_aprs);
   
   /* Generate the audio tones and send to callback */
   int ret_val = ax25_frame(&ax25, src_callsign, dst_callsign,
