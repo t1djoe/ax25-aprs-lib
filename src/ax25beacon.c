@@ -59,6 +59,7 @@ int ax25_beacon(const void*           user_data,
   const uint16_t speed_aprs = log((speed*1.151)+1)/log(1.08);
   const double altitude_in_feet = altitude_in_m * 3.2808399;
 
+  printf(course, course_aprs, speed, speed_aprs);
   const uint8_t STR_LEN = 5;
   const uint8_t STR_LEN_2 = 2;
   
