@@ -32,7 +32,9 @@ extern "C" {
 
 typedef enum
 {
-  AX25_AFSK1200 = 0, AX25_AFSK2400,
+/* Changing this to attempt changing to GPIO14
+  AX25_AFSK1200 = 0, AX25_AFSK2400,*/
+  AX25_AFSK1200 = 14, AX25_AFSK2400,
 } ax25_mode_t;
 
 typedef void (*ax25_audio_callback_t)(const void* data, const int16_t* wav, size_t wav_len, uint16_t samplerate);
