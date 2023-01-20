@@ -55,8 +55,8 @@ int ax25_beacon(const void*           user_data,
   /* Convert the position to the format APRS requires */
   const double latitude_aprs  = (90.0  - latitude)  * 380926.0;
   const double longitude_aprs = (180.0 + longitude) * 190463.0;
-  const uint16_t course_aprs = course / 4;
-  const uint16_t speed_aprs = log((speed*1.151)+1)/log(1.08);
+  const int course_aprs = course / 4;
+  const int speed_aprs = log((speed*1.151)+1)/log(1.08);
   const double altitude_in_feet = altitude_in_m * 3.2808399;
 
   const uint8_t STR_LEN = 5;
