@@ -35,6 +35,7 @@ int ax25_beacon(const void*           user_data,
                 double                altitude_in_m,
                 int                   course,
                 int                   speed,
+                char*                 time,
                 const char*           comment,
                 char                  sym_table,
                 char                  sym_code);
