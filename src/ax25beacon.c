@@ -28,6 +28,7 @@ int ax25_beacon(const void*           user_data,
                 double                altitude_in_m,
                 int                   course,
                 int                   speed,
+                char*                 time,
                 const char*           comment,
                 char                  sym_table,
                 char                  sym_code)
@@ -66,7 +67,7 @@ int ax25_beacon(const void*           user_data,
   char long_str[STR_LEN];
   char course_str[STR_LEN_2];
   char speed_str[STR_LEN_2];
-
+    
   ax25_base91enc(lat_str,  STR_LEN - 1, latitude_aprs);
   ax25_base91enc(long_str, STR_LEN - 1, longitude_aprs);
   ax25_base91enc(course_str, STR_LEN_2 - 1, course_aprs);
@@ -75,9 +76,9 @@ int ax25_beacon(const void*           user_data,
   /* Generate the audio tones and send to callback */
   int ret_val = ax25_frame(&ax25, src_callsign, dst_callsign,
                            path1, path2,
-                           "!%c%s%s%c%s%s/A=%06.0f %s", sym_table,
+                           "!%szc%s%s%c%s%s/A=%06.0f %s", sym_table,
                            lat_str, long_str,
-                           sym_code, course_str, speed_str,
+                           sym_code, course_str, speed_str, time,
                            altitude_in_feet,
                            (comment ? comment : ""));
 
