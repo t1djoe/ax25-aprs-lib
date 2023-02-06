@@ -28,7 +28,7 @@ int ax25_beacon(const void*           user_data,
                 double                altitude_in_m,
                 int                   course,
                 int                   speed,
-                char*                 time,
+                char*                 time_str,
                 const char*           comment,
                 char                  sym_table,
                 char                  sym_code)
@@ -78,7 +78,7 @@ int ax25_beacon(const void*           user_data,
                            path1, path2,
                            "!%szc%s%s%c%s%s/A=%06.0f %s", sym_table,
                            lat_str, long_str,
-                           sym_code, course_str, speed_str, time,
+                           sym_code, course_str, speed_str, time_str,
                            altitude_in_feet,
                            (comment ? comment : ""));
 
